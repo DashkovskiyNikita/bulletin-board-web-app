@@ -6,7 +6,9 @@ import io.kvision.form.text.Password
 import io.kvision.form.text.Text
 import io.kvision.html.button
 import io.kvision.html.link
+import io.kvision.navigo.NavigateOptions
 import io.kvision.panel.VPanel
+import io.kvision.routing.routing
 import io.kvision.utils.perc
 import io.kvision.utils.px
 
@@ -26,30 +28,28 @@ object RegistrationPanel : VPanel() {
                 required = true
             )
             add(
+                key = RegistrationForm::email,
+                control = Text(label = "Почта"),
+                required = true
+            )
+            add(
                 key = RegistrationForm::password,
                 control = Password(label = "Пароль"),
                 required = true
             )
             add(
-                key = RegistrationForm::password,
+                key = RegistrationForm::repeatPassword,
                 control = Password(label = "Повтор пароля"),
                 required = true
             )
             add(
                 child = button(text = "Зарегистрироваться") { width = 100.perc }
             )
-        }
-        link(
-            label = "Уже зарегистрированы?Войти",
-            url = ""
-        ){
-            onEvent {
-                click = {
-                    this@RegistrationPanel.hide()
-                    LoginPanel.show()
-                }
+            button(text = "Войти"){
+                onClick { routing.navigate("/login") }
+                width = 100.perc
+                marginTop = 10.px
             }
-            marginTop = 10.px
         }
     }
 }
