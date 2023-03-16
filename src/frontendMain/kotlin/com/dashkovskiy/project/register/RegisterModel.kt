@@ -1,15 +1,9 @@
-package com.dashkovskiy.project
+package com.dashkovskiy.project.register
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginForm(
-    val email : String = "",
-    val password : String = ""
-)
-
-@Serializable
-data class UserRequest(
+data class RegisterModel(
     val name : String,
     val surname : String,
     val email : String,
